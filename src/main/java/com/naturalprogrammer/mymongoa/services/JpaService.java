@@ -20,6 +20,11 @@ public class JpaService {
 	@Autowired
 	private JpaEntityRepository jpaEntityRepository;
 
+	/**
+	 * Create "count" JPA entities. Do this first for creating, say, 110,000 entities.
+	 * 
+	 * @param count
+	 */
 	@Transactional(propagation=Propagation.REQUIRED, readOnly=false)
 	public void createEntities(long count) {
 		for (long i = 1; i <= count; i++) {
@@ -29,6 +34,13 @@ public class JpaService {
 		}
 	}
 
+	/**
+	 * Retrieve "count" entities starting from 1 in step "step."
+	 * Do this to retrieve, say 200 records in step, say 500
+	 * 
+	 * @param count
+	 * @param step
+	 */
 	public void retrieveEntities(long count, long step) {
 		
 		for (long i = 1; i <= count; i += step) {

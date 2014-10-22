@@ -56,21 +56,22 @@ public class RootController {
 	 * @param descr
 	 * @return
 	 */
-	@RequestMapping("/create-mongo-entity/{descr}")
-	public String createMongoEntity(@PathVariable("descr") String descr) {
+	@RequestMapping("/create-mongo-entity/{descr}/{id}")
+	public String createMongoEntity(@PathVariable("descr") String descr, @PathVariable("id") long id) {
 		
 		MongoEntity mongoEntity = new MongoEntity();
 		
 		mongoEntity.setDescr(descr);
+		mongoEntity.setId(id);
 		
 		mongoEntityRepository.save(mongoEntity);
 		
-		return mongoEntity.getId();
+		return Long.toString(mongoEntity.getId());
 		
 	}
 	
 	/**
-	 * Creates a new JPA entity. Used for testing whether the environment is working ok
+	 * See {@link JpaService#createEntities(long)} for details.
 	 * 
 	 * @param descr
 	 * @return
@@ -88,18 +89,30 @@ public class RootController {
 		return "Success";
 	}
 
-	@RequestMapping("/create-mongo-entities/{count}")
-	public String createMongoEntities(@PathVariable("count") long count)
+	/**
+	 * See {@link MongoService#createEntities(long, long)} for details.
+	 * 
+	 * @param descr
+	 * @return
+	 */	
+	@RequestMapping("/create-mongo-entities/{count}/{startId}")
+	public String createMongoEntities(@PathVariable("count") long count, @PathVariable("startId") long startId)
 	{
-		logger.info("Creating " + count + " Mongo entities");
+		logger.info("Creating " + count + " Mongo entities starting from " + startId);
 		
-		mongoService.createEntities(count);
+		mongoService.createEntities(count, startId);
 		
 		logger.info("Creating Mongo entities complete");
 
 		return "Success";
 	}
 	
+	/**
+	 * See {@link JpaService#retrieveEntities(long, long)} for details.
+	 * 
+	 * @param descr
+	 * @return
+	 */	
 	@RequestMapping("/retrive-jpa-entities/{count}/{step}")
 	public String retrieveJpaEntities(long count, long step) 
 	{		
@@ -110,6 +123,12 @@ public class RootController {
 		return "Success";
 	}
 	
+	/**
+	 * See {@link MongoService#retrieveEntities(long, long)} for details.
+	 * 
+	 * @param descr
+	 * @return
+	 */	
 	@RequestMapping("/retrive-mongo-entities/{count}/{step}")
 	public String retrieveMongoEntities(long count, long step) 
 	{		
