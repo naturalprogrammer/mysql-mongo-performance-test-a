@@ -43,9 +43,14 @@ public class JpaService {
 	 */
 	public void retrieveEntities(long count, long step) {
 		
-		for (long i = 1; i <= count; i += step) {
-			JpaEntity entity = jpaEntityRepository.findOne(i);
+		long nextId = 1;
+		
+		for (long i = 0; i < count; i++) {
+			
+			JpaEntity entity = jpaEntityRepository.findOne(nextId);
 			logger.info("Retrieved entity " + entity.getId() + ": " + entity.getDescr());
+			
+			nextId += step;
 		}
 			
 	}

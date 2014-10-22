@@ -113,8 +113,8 @@ public class RootController {
 	 * @param descr
 	 * @return
 	 */	
-	@RequestMapping("/retrive-jpa-entities/{count}/{step}")
-	public String retrieveJpaEntities(long count, long step) 
+	@RequestMapping("/retrieve-jpa-entities/{count}/{step}")
+	public String retrieveJpaEntities(@PathVariable("count") long count, @PathVariable("step") long step) 
 	{		
 		logger.info("Retrieving " + count + " JPA entities in step " + step);
 		jpaService.retrieveEntities(count, step);
@@ -129,8 +129,8 @@ public class RootController {
 	 * @param descr
 	 * @return
 	 */	
-	@RequestMapping("/retrive-mongo-entities/{count}/{step}")
-	public String retrieveMongoEntities(long count, long step) 
+	@RequestMapping("/retrieve-mongo-entities/{count}/{step}")
+	public String retrieveMongoEntities(@PathVariable("count") long count, @PathVariable("step") long step) 
 	{		
 		logger.info("Retrieving " + count + " Mongo entities in step " + step);
 		mongoService.retrieveEntities(count, step);

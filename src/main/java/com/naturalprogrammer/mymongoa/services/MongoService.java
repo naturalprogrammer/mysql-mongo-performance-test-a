@@ -46,9 +46,15 @@ public class MongoService {
 	 * @param step
 	 */
     public void retrieveEntities(long count, long step) {
-		for (long i = 1; i <= count; i += step) {
-			MongoEntity entity = mongoEntityRepository.findOne(i);
+
+    	long nextId = 1;
+
+    	for (long i = 0; i < count; i++) {
+    		
+			MongoEntity entity = mongoEntityRepository.findOne(nextId);
 			logger.info("Retrieved entity " + entity.getId() + ": " + entity.getDescr());
+			
+			nextId += step;
 		}
 	}
 
