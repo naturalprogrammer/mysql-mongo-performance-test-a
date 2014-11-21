@@ -15,6 +15,7 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 public class Application {
 
     public static void main(String[] args) {
+    	// Run Spring
         SpringApplication.run(Application.class, args);
     }
 }
