@@ -12,7 +12,7 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 @EnableAutoConfiguration
 @EnableMongoRepositories({"com.naturalprogrammer.mymongoa.repositories.mongo"})
 @EnableJpaRepositories({"com.naturalprogrammer.mymongoa.repositories.jpa"})
-// Neo4j ?
+// Neo4j ??
 public class Application {
 
     public static void main(String[] args) {
